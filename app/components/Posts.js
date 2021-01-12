@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { fetchMainPosts } from '../utils/api';
-import Loading from './Loading'
 import PostsList from './PostsList'
+import Loading from './Loading'
 
 export default class Posts extends React.Component {
   state = {
     posts: null,
     error: null,
-    Loading: true
+    loading: true
   }
   componentDidMount() {
     this.handleFetch()
@@ -30,7 +30,7 @@ export default class Posts extends React.Component {
       posts,
       loading: false,
       error: null
-    }))
+    }, console.log('gothere======>>>', posts)))
     .catch(({ message }) => this.setState({
       error: message,
       loading: false
@@ -46,7 +46,6 @@ export default class Posts extends React.Component {
     if (error) {
       return <p className="center-text error">{error}</p>
     }
-
     return <PostsList posts={posts} />
   }
 }
